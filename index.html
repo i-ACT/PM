@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>i-ACT Learning Platform</title>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="description" content=""/>
+    <meta name="author" content=""/>
+	
+	<link rel="shortcut icon" type="image/ico" href="Images/favicon.ico"/>
+    <!-- Bootstrap core CSS -->
+    <link href="Css/bootstrap.min.css" rel="stylesheet"/>
+	<link href="Css/alertify.min.css" rel="stylesheet"/>
+	<link href="Css/default.min.css" rel="stylesheet"/>
+    <!-- Custom styles for this template -->
+    <link class="defaultStyle" href="Css/style_white.css" rel="stylesheet"/>
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="Javascript/Bootstrap/html5Shiv.js"></script>
+    <script src="Javascript/Bootstrap/respond.min.js"></script>
+    <![endif]-->
+	<script src="Javascript/Jquery/jquery.js"></script>
+	<script src="Javascript/alertify.min.js"></script>
+
+	<script src="Javascript/Bootstrap/bootstrap.min.js"></script>
+	<script src="Javascript/browserDetect.js"></script>
+	<link href="Css/fontawesome-all.min.css" rel="stylesheet"/>
+</head>
+</head>
+
+<body id="mainbody">
+<!-- <div class="fullContent"> -->
+<div class="container-fluid" style="padding:0; margin:0">
+
+	<!-- Header content area-->
+    <div class="Header col-xs-12 col-md-12">
+		
+		<!-- <img src="Images/Template/logo.png" id="clientLogo" class ="col-xs-2 col-md-2 pull-left"/> -->
+		<div class ="col-xs-2 col-md-2">
+			<img src="Images/Template/map_logo_48_48.png" class="img-responsive"/>
+		</div>
+        <div class="col-xs-8 col-md-8 text-center headerTxt">
+<!-- i-ACT Learning Platform -->
+</div>
+		<div class="col-xs-2 col-md-2">
+			<img src="Images/Template/i-point%20logo.png" id="ipointlogo" class="img-responsive i-pointlogo pull-right"/>
+		</div>
+    </div>
+	
+	<div class="Header-strip col-xs-12 col-md-12"></div>
+	<!-- ----------------------------------------- -->
+</div>
+
+<div class="container-fluid" id="page">
+
+	<!-- Login content area-->
+	
+    <div id="loginContentArea" class="col-xs-12 col-md-12 pull-right">
+        <div class="col-xs-12 col-md-12 clearfix">
+            <div class="col-xs-5 col-md-5 pull-right LoginPage form form-horizontal">
+				<div class="col-xs-12 col-md-12 form-group">
+					<label class="control-label">Email Id</label>
+					<input id="EmailID" type="text" class="col-xs-8 col-md-8 input-sm form-control" autofocus/>
+				</div>
+				
+				<div class="col-xs-12 col-md-12 form-group">
+					<label class="control-label">Password</label>
+					<input id="Password" type="password" class="col-xs-8 col-md-8 input-sm form-control"/>
+                </div>
+				
+				<p></p>
+				
+				<div class="col-xs-12 col-md-12 form-group">
+					<button class="btn btn-primary col-xs-12 col-md-5" id="submitBtn">Login</button>
+					<button class="btn btn-primary col-xs-12 col-md-5" id="signUpBtn">SignUp</button>
+                </div>
+				
+				<p></p>
+				
+				<div class="col-xs-12 form-group">
+					<button class="btn btn-md btn-danger btn-social text-center col-xs-12 col-md-6" id="loginBtn" style="display:none" onclick="$.fn.handleLogIn()">
+						<span class="fa fa-google"></span>
+						<span>Login Using Google</span>
+					</button>
+				</div>
+				
+				<div class="col-xs-12 col-md-12 forgtPasswrdContainer form-group">
+					<label for="forgotpassword" class="overeffect">
+					<a href="forgotPassword.html">Forgot Password?</a>
+					</label>
+				</div>
+				
+                <div class="col-xs-12 col-md-12 form-group" id="ErrText"></div>
+            </div>
+        </div>
+		
+		<!-- <div class='col-xs-12 col-md-12 text-wrapper'>
+			 <div class='pull-right textBG'><p>Brief writeup about Lean Practitioner training will be added here.</p></div>
+		</div> -->
+    </div>
+	<!-- ----------------------------------------- -->
+</div>
+	
+	<!-- footer content area-->	
+    <footer class="col-md-12 col-xs-12 footer clearfix">
+		<div class="text-right">
+            <span onclick="$.fn.displayLightBox(0)">Contact Us </span>
+            <span onclick="$.fn.displayLightBox(1)">Privacy Policy</span>
+            <span onclick="$.fn.displayLightBox(2)">Terms and Conditions</span>
+        </div>
+    </footer>
+	<!-- ------------------------------------------------ -->
+	<div id="fade" class="black_overlay modal-backdrop"></div>
+	<div id="light" class="white_content">
+		<img class="pull-right closeBtn" onclick="$.fn.CloseBtnClicked()" style="cursor: pointer" src="Images/Template/CloseBtn.png"/>
+		<div id="PopUpContent"></div>
+	</div>
+
+
+
+<input type="hidden" class="loginSessionId"></input>
+
+
+<!-- SignUp modal -->
+
+<div id="signUpModal" class="modal fade" role="dialog">
+  <div class="modal-dialog modal-md">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+		  <div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal">&times;</button>
+			<h4 class="modal-title text-center">User Registration</h4>
+		  </div>
+	  
+		<div class="modal-body">
+			<form role="form" id="registrationForm">
+				<div class="form-group">
+					<label for="regUsername">UserName : <span class="text-red">*</span></label>
+					<div class="input-group">
+						<span class="input-group-addon" id="userName-addon"><span class="fa fa-fw fa-user"></span></span>
+						<input id="regUsername" type="text" class="form-control" placeholder="Enter Username" aria-describedby="userName-addon" autofocus="true"/>
+					</div>
+				</div>
+				
+				<div class="form-group">
+					<label for="regEmail">Email Id : <span class="text-red">*</span></label>
+					<div class="input-group">
+						<span class="input-group-addon" id="email-addon"><span class="fa fa-fw fa-envelope"></span></span>
+						<input id="regEmail" type="text" class="form-control" placeholder="Enter Email Id" aria-describedby="email-addon"/>
+					</div>
+				</div>
+				
+				<div class="form-group">
+					<label for="regPwd">Password : <span class="text-red">*</span></label>
+					<div class="input-group">
+						<span class="input-group-addon" id="pwd-addon"><span class="fa fa-fw fa-lock"></span></span>
+						<input id="regPwd" type="password" class="form-control" placeholder="Enter Password" aria-describedby="pwd-addon">
+					</div>
+				</div>
+				
+				<div class="form-group">
+					<label for="regConfrmPwd">Confirm Password : <span class="text-red">*</span></label>
+					<div class="input-group">
+						<span class="input-group-addon" id="pwd-addon"><span class="fa fa-fw fa-lock"></span></span>
+						<input id="regConfrmPwd" type="password" class="form-control" placeholder="Enter Confirm Password" aria-describedby="pwd-addon">
+					</div>
+				</div>
+				
+				<div class="form-group">
+					<label for="cmpnyName">Company :</label>
+					<div class="input-group">
+						<span class="input-group-addon" id="cmp-addon"><span class="fa fa-fw fa-building"></span></span>
+						<input id="cmpnyName" type="text" class="form-control" placeholder="Enter Company Name" aria-describedby="cmp-addon">
+					</div>
+				</div>
+				
+				<div class="form-group">
+					<label for="deptName">Department :</label>
+					<div class="input-group">
+						<span class="input-group-addon" id="dpt-addon"><span class="fa fa-fw fa-building"></span></span>
+						<input id="deptName" type="text" class="form-control" placeholder="Enter Department Name" aria-describedby="dpt-addon">
+					</div>
+				</div>
+				
+				<div class="form-group">
+					<p class="regStatus"></p>
+				</div>
+			</form>
+		</div>
+      
+		  <div class="modal-footer">
+			<button type="button" class="btn btn-primary processSignUpBtn">Sign Up</button>
+		  </div>
+    </div>
+
+  </div>
+</div>
+
+</body>
+
+<script src="Javascript/LoadingXML.js"></script>
+<script src="Javascript/phpHandler.js"></script>
+
+<style type="text/css">
+.alertify-notifier .ajs-message
+{
+	background-color: #FFCCCC;
+}
+
+</style>
+
+</html>
